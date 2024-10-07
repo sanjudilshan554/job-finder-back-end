@@ -14,4 +14,8 @@ class CategoryService{
        return  $this->category->create($data);
     }
 
+    public function all(){
+        return  $this->category->all();
+     }
+
 }

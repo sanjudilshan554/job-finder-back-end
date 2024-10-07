@@ -11,4 +11,8 @@ class CategoryController extends Controller
     public function store(Request $request){
         return CategoryFacade::store($request->all());
     }
+
+    public function all(){
+        return CategoryFacade::all();
+    }
 }

@@ -11,4 +11,5 @@ Route::get('/user', function (Request $request) {
 
 Route::prefix('category')->group(function () {
     Route::post('/store', [CategoryController::class, 'store']);
+    Route::get('/all', [CategoryController::class, 'all']);
 });
