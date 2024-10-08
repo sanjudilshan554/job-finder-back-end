@@ -1,6 +1,6 @@
 <?php
-namespace domain\Service\CategoryService;
-use App\Models\category;
+namespace domain\Service\CategoryService; 
+use App\Models\JobCategory;
 
 class CategoryService
 {
@@ -14,7 +14,7 @@ class CategoryService
      */
     public function __construct()
     {
-        $this->category = new category();
+        $this->category = new JobCategory();
     }
     
     /**
@@ -26,6 +26,7 @@ class CategoryService
      */
     public function store(array $data)
     {
+        $data['slug'] = $this->makeSlug($data['name']);
         return $this->category->create($data);
     }
     
@@ -78,4 +79,20 @@ class CategoryService
         return $category->delete();
     }
 
+    
+    /**
+     * Method makeSlug
+     *
+     * @param String $string  
+     *
+     * @return string
+     */
+    public function makeSlug(String $string): ?string
+    {
+        $slug = trim($string); // trim the string
+        $slug = preg_replace('/[^a-zA-Z0-9 -]/', '', $slug); // only take alphanumerical characters, but keep the spaces and dashes too...
+        $slug = str_replace(' ', '-', $slug); // replace spaces by dashes
+        $slug = strtolower($slug);  // make it lowercase
+        return $slug;
+    }
 }
