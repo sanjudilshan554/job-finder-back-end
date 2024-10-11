@@ -29,6 +29,16 @@ class CategoryController extends Controller
     {
         return CategoryFacade::all();
     }
+
+    /**
+     * Method allEnabled
+     *
+     * @return void
+     */
+    public function allEnabled()
+    {
+        return CategoryFacade::allEnabled();
+    }
     
     /**
      * Method get

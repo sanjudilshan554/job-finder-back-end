@@ -1,11 +1,11 @@
 <?php
-namespace domain\Service\CategoryService; 
-use App\Models\JobCategory;
+namespace domain\Service\JobService; 
+use App\Models\Job;
 
-class CategoryService
+class JobService
 {
 
-    private $category;
+    private $job;
     
     /**
      * Method __construct
@@ -14,7 +14,7 @@ class CategoryService
      */
     public function __construct()
     {
-        $this->category = new JobCategory();
+        $this->job = new Job();
     }
     
     /**
@@ -27,7 +27,7 @@ class CategoryService
     public function store(array $data)
     {
         $data['slug'] = $this->makeSlug($data['name']);
-        return $this->category->create($data);
+        return $this->job->create($data);
     }
     
     /**
@@ -37,17 +37,7 @@ class CategoryService
      */
     public function all()
     {
-        return $this->category->all();
-    }
-
-    /**
-     * Method all
-     *
-     * @return void
-     */
-    public function allEnabled()
-    {
-        return $this->category->where('status', 1)->get();
+        return $this->job->all();
     }
     
     /**
@@ -59,7 +49,7 @@ class CategoryService
      */
     public function get(int $category_id)
     {
-        return $this->category->find($category_id);
+        return $this->job->find($category_id);
     }
     
     /**
@@ -72,8 +62,8 @@ class CategoryService
      */
     public function update(int $category_id, array $data)
     {
-        $category = $this->category->find($category_id);
-        return $category->update($data);
+        $job = $this->job->find($category_id);
+        return $job->update($data);
     }
     
     /**
@@ -85,8 +75,8 @@ class CategoryService
      */
     public function delete(int $category_id)
     {
-        $category = $this->category->find($category_id);
-        return $category->delete();
+        $job = $this->job->find($category_id);
+        return $job->delete();
     }
 
     
