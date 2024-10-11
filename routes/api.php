@@ -23,6 +23,7 @@ Route::prefix('job')->group(function () {
     Route::post('/store', [AdminJobController::class, 'store']);
     Route::get('/all', [AdminJobController::class, 'all']);
     Route::get('/get/{job_id}', [AdminJobController::class, 'get']);
+    Route::get('/edit/{job_id}', [AdminJobController::class, 'edit']);
     Route::post('/update/{job_id}', [AdminJobController::class, 'update']);
     Route::delete('/delete/{job_id}', [AdminJobController::class, 'delete']);
 });
