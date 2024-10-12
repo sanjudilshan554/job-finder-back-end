@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->bigInteger('category_id')->nullable();
             $table->string('category_name')->nullable();
-            $table->string('type')->nullable();
+            $table->bigInteger('type_id')->nullable();
+            $table->string('type_name')->nullable();
             $table->string('description')->nullable();
             $table->string('experience')->nullable();
             $table->string('location')->nullable();
