@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
+use domain\Facade\BlogCategoryFacade\BlogCategoryFacade;
 use Illuminate\Http\Request;
 
 class BlogCategoryController extends Controller
@@ -16,7 +17,7 @@ class BlogCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        return CategoryFacade::store($request->all());
+        return BlogCategoryFacade::store($request->all());
     }
     
     /**
@@ -26,7 +27,7 @@ class BlogCategoryController extends Controller
      */
     public function all()
     {
-        return CategoryFacade::all();
+        return BlogCategoryFacade::all();
     }
 
     /**
@@ -36,7 +37,7 @@ class BlogCategoryController extends Controller
      */
     public function allEnabled()
     {
-        return CategoryFacade::allEnabled();
+        return BlogCategoryFacade::allEnabled();
     }
     
     /**
@@ -48,7 +49,7 @@ class BlogCategoryController extends Controller
      */
     public function get($category_id)
     {
-        return CategoryFacade::get($category_id);
+        return BlogCategoryFacade::get($category_id);
     }
     
     /**
@@ -61,7 +62,7 @@ class BlogCategoryController extends Controller
      */
     public function update($category_id, Request $request)
     {
-        return CategoryFacade::update($category_id, $request->all());
+        return BlogCategoryFacade::update($category_id, $request->all());
     }
     
     /**
@@ -73,6 +74,6 @@ class BlogCategoryController extends Controller
      */
     public function delete($category_id)
     {
-        return CategoryFacade::delete($category_id);
+        return BlogCategoryFacade::delete($category_id);
     }
 }

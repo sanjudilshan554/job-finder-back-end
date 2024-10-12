@@ -27,7 +27,7 @@ class BlogService
      */
     public function store(array $data)
     {
-        $data['slug'] = $this->makeSlug($data['name']);
+        $data['slug'] = $this->makeSlug($data['title']);
         return $this->blog->create($data);
     }
     

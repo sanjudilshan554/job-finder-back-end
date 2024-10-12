@@ -17,13 +17,13 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('slug')->nullable(); 
             $table->bigInteger('category_id')->nullable(); 
+            $table->string('category_name')->nullable(); 
             $table->string('view_text')->nullable(); 
             $table->text('text')->nullable(); 
             $table->bigInteger('posted_by_id')->nullable(); 
             $table->string('posted_by_name')->nullable(); 
             $table->bigInteger('image_id')->nullable(); 
             $table->string('meta_tags')->nullable(); 
-            $table->integer('view_tags')->nullable(); 
             $table->softDeletes();
             $table->timestamps();
         });
