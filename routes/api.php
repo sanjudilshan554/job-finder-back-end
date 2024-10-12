@@ -1,7 +1,12 @@
 <?php
 
+
+use App\Http\Controllers\Blog\BlogCategoryController as AdminBlogCategoryController;
+use App\Http\Controllers\Blog\BlogTagController as AdminBlogTagController;
 use App\Http\Controllers\CategoryController as AdminCategoryController;
-use App\Http\Controllers\JobController as AdminJobController;
+use App\Http\Controllers\JobController as AdminJobController; 
+use App\Http\Controllers\Blog\BlogController as AdminBlogController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +31,16 @@ Route::prefix('job')->group(function () {
     Route::get('/edit/{job_id}', [AdminJobController::class, 'edit']);
     Route::post('/update/{job_id}', [AdminJobController::class, 'update']);
     Route::delete('/delete/{job_id}', [AdminJobController::class, 'delete']);
+});
+
+Route::prefix('/blog')->group(function(){
+    Route::post('/store',[AdminBlogController::class, 'store']);
+
+    Route::prefix('/category')->group(function(){
+        Route::post('/store',[AdminBlogCategoryController::class, 'store']);
+    });
+
+    Route::prefix('/tag')->group(function(){
+        Route::post('/store',[AdminBlogTagController::class, 'store']);
+    });
 });
