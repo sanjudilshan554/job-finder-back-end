@@ -52,5 +52,10 @@ Route::prefix('/blog')->group(function () {
 
     Route::prefix('/tag')->group(function () {
         Route::post('/store', [AdminBlogTagController::class, 'store']);
+        Route::get('/all', [AdminBlogTagController::class, 'all']);
+        Route::get('/get/{job_id}', [AdminBlogTagController::class, 'get']);
+        Route::get('/edit/{job_id}', [AdminBlogTagController::class, 'edit']);
+        Route::post('/update/{job_id}', [AdminBlogTagController::class, 'update']);
+        Route::delete('/delete/{job_id}', [AdminBlogTagController::class, 'delete']);
     });
 });
