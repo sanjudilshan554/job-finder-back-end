@@ -14,6 +14,7 @@ class JobCompany extends Model
     protected $fillable = [
         'status',
         'name',
+        'slug',
         'web_address',
         'email',
         'location',

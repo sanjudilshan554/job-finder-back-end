@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('job_companies', function (Blueprint $table) {
             $table->id();
+            $table->string('status')->nullable();
             $table->string('name')->nullable();
+            $table->string('slug')->nullable();
             $table->string('web_address')->nullable();
             $table->string('email')->nullable();
             $table->string('location')->nullable();
             $table->string('address')->nullable();
             $table->string('description')->nullable();
             $table->bigInteger('image_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

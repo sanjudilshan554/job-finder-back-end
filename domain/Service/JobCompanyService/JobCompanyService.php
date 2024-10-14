@@ -1,11 +1,12 @@
 <?php
 namespace domain\Service\JobCompanyService; 
 use App\Models\Job;
+use App\Models\JobCompany;
 
 class JobCompanyService
 {
 
-    private $job;
+    private $job_company;
     
     /**
      * Method __construct
@@ -14,7 +15,7 @@ class JobCompanyService
      */
     public function __construct()
     {
-        $this->job = new Job();
+        $this->job_company = new JobCompany();
     }
     
     /**
@@ -27,7 +28,7 @@ class JobCompanyService
     public function store(array $data)
     {
         $data['slug'] = $this->makeSlug($data['name']);
-        return $this->job->create($data);
+        return $this->job_company->create($data);
     }
     
     /**
@@ -37,46 +38,46 @@ class JobCompanyService
      */
     public function all()
     {
-        return $this->job->all();
+        return $this->job_company->all();
     }
     
     /**
      * Method get
      *
-     * @param int $category_id  
+     * @param int $job_company_id  
      *
      * @return void
      */
-    public function get(int $category_id)
+    public function get(int $job_company_id)
     {
-        return $this->job->find($category_id);
+        return $this->job_company->find($job_company_id);
     }
     
     /**
      * Method update
      *
-     * @param int $category_id  
+     * @param int $job_company_id  
      * @param array $data 
      *
      * @return void
      */
-    public function update(int $category_id, array $data)
+    public function update(int $job_company_id, array $data)
     {
-        $job = $this->job->find($category_id);
-        return $job->update($data);
+        $job_company = $this->job_company->find($job_company_id);
+        return $job_company->update($data);
     }
     
     /**
      * Method delete
      *
-     * @param int $category_id 
+     * @param int $job_company_id 
      *
      * @return void
      */
-    public function delete(int $category_id)
+    public function delete(int $job_company_id)
     {
-        $job = $this->job->find($category_id);
-        return $job->delete();
+        $job_company = $this->job_company->find($job_company_id);
+        return $job_company->delete();
     }
 
     
