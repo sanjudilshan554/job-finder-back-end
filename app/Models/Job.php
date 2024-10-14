@@ -25,7 +25,10 @@ class Job extends Model
         'location',
         'salary',
         'working_hours',
+        'company_id',
         'company_name',
+        'no_of_vacancy',
+        'requirements',
         'responsibilities',
         'image_id', 
     ];

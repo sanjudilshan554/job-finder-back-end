@@ -25,9 +25,12 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->string('salary')->nullable();
             $table->string('working_hours')->nullable();
-            $table->string('company_name')->nullable();
             $table->string('responsibilities')->nullable();
             $table->bigInteger('image_id')->nullable();
+            $table->bigInteger('company_id')->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('no_of_vacancy')->nullable();
+            $table->string('requirements')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
