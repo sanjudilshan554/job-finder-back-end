@@ -1,12 +1,12 @@
 <?php
-namespace domain\Service\JobService; 
+namespace domain\Service\JobService;
 use App\Models\Job;
 
 class JobService
 {
 
     private $job;
-    
+
     /**
      * Method __construct
      *
@@ -16,7 +16,7 @@ class JobService
     {
         $this->job = new Job();
     }
-    
+
     /**
      * Method store
      *
@@ -29,7 +29,7 @@ class JobService
         $data['slug'] = $this->makeSlug($data['name']);
         return $this->job->create($data);
     }
-    
+
     /**
      * Method all
      *
@@ -39,7 +39,7 @@ class JobService
     {
         return $this->job->all();
     }
-    
+
     /**
      * Method get
      *
@@ -51,7 +51,7 @@ class JobService
     {
         return $this->job->find($category_id);
     }
-    
+
     /**
      * Method update
      *
@@ -65,7 +65,7 @@ class JobService
         $job = $this->job->find($category_id);
         return $job->update($data);
     }
-    
+
     /**
      * Method delete
      *
@@ -79,7 +79,7 @@ class JobService
         return $job->delete();
     }
 
-    
+
     /**
      * Method makeSlug
      *
@@ -87,12 +87,53 @@ class JobService
      *
      * @return string
      */
-    public function makeSlug(String $string): ?string
+    public function makeSlug(string $string): ?string
     {
         $slug = trim($string); // trim the string
         $slug = preg_replace('/[^a-zA-Z0-9 -]/', '', $slug); // only take alphanumerical characters, but keep the spaces and dashes too...
         $slug = str_replace(' ', '-', $slug); // replace spaces by dashes
         $slug = strtolower($slug);  // make it lowercase
         return $slug;
+    }
+
+    /**
+     * Method deletedAll
+     *
+     * @return void
+     */
+    public function deletedAll()
+    {
+        return $this->job->onlyTrashed()->get();
+    }
+
+    /**
+     * Method deletedGet
+     *
+     * @param $job_id
+     *
+     * @return void
+     */
+    public function deletedGet($job_id)
+    {
+        return $this->job->onlyTrashed()->find($job_id);
+    }
+
+    /**
+     * Method deletedGet
+     *
+     * @param $job_id 
+     *
+     * @return void
+     */
+    public function recovery($job_id)
+    {
+        $job = $this->job->onlyTrashed()->find($job_id);
+
+        if ($job) {
+            $job->restore();
+        }
+
+        return;
+
     }
 }

@@ -24,6 +24,9 @@ Route::prefix('/job')->group(function () {
     Route::get('/edit/{job_id}', [AdminJobController::class, 'edit']);
     Route::post('/update/{job_id}', [AdminJobController::class, 'update']);
     Route::delete('/delete/{job_id}', [AdminJobController::class, 'delete']);
+    Route::get('/deleted/all', [AdminJobController::class, 'deletedAll']);
+    Route::get('/deleted/get/{job_id}', [AdminJobController::class, 'deletedGet']);
+    Route::get('/recovery/{job_id}', [AdminJobController::class, 'recovery']);
 
     Route::prefix('/category')->group(callback: function () {
         Route::post('/store', [AdminCategoryController::class, 'store']);

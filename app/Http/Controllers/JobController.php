@@ -65,4 +65,32 @@ class JobController extends Controller
     {
         return JobFacade::delete($job_id);
     }
+    
+    /**
+     * Method deletedAll
+     *
+     * @return void
+     */
+    public function deletedAll()
+    {
+        return JobFacade::deletedAll();
+    }
+    
+    /**
+     * Method deletedGet
+     *
+     * @param $job_id
+     *
+     * @return void
+     */
+    public function deletedGet($job_id)
+    {
+        return JobFacade::deletedGet($job_id);
+    }
+
+    public function recovery($job_id)
+    {
+        return JobFacade::recovery($job_id);
+    }
+
 }
