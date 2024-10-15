@@ -22,7 +22,10 @@ class UpdateJobCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'status' => 'nullable',
+            'description' => 'nullable|string|max:255',
+            // 'image_id' => 'required|image',
         ];
     }
 }

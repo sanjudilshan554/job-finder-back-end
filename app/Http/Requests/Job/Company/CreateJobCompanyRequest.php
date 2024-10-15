@@ -24,12 +24,12 @@ class CreateJobCompanyRequest extends FormRequest
         return [
             'status' => 'required',
             'name' => 'required|string|max:255',
-            'web_address' => 'required|string',
-            'email' => 'required|email|unique',
-            'location' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            // 'image_id' => 'required',
+            'web_address' => 'nullable|string',
+            'email' => 'nullable|email',
+            'location' => 'nullable|string|max:255',
+            'address' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:255',
+            // 'image_id' => 'nullable',
         ];
     } 
 }

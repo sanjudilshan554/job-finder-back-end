@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\Job\Category\CreateJobCategoryRequest;
+use App\Http\Requests\Job\Category\UpdateJobCategoryRequest;
 use domain\Facade\CategoryFacade\CategoryFacade;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,7 @@ class CategoryController extends Controller
      *
      * @return void
      */
-    public function store(Request $request)
+    public function store(CreateJobCategoryRequest $request)
     {
         return CategoryFacade::store($request->all());
     }
@@ -60,7 +62,7 @@ class CategoryController extends Controller
      *
      * @return void
      */
-    public function update($category_id, Request $request)
+    public function update($category_id, UpdateJobCategoryRequest $request)
     {
         return CategoryFacade::update($category_id, $request->all());
     }
