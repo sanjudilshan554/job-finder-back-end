@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Job\Company\CreateJobCompanyRequest;
+use App\Http\Requests\Job\Company\UpdateJobCompanyRequest;
 use domain\Facade\JobCompanyFacade\JobCompanyFacade;
 use Illuminate\Http\Request;
 
@@ -14,11 +16,11 @@ class JobCompanyController extends Controller
      *
      * @return void
      */
-    public function store(Request $request)
+    public function store(CreateJobCompanyRequest $request)
     {
         return JobCompanyFacade::store($request->all());
     }
-    
+
     /**
      * Method all
      *
@@ -38,7 +40,7 @@ class JobCompanyController extends Controller
     {
         return JobCompanyFacade::allEnabled();
     }
-    
+
     /**
      * Method get
      *
@@ -50,7 +52,7 @@ class JobCompanyController extends Controller
     {
         return JobCompanyFacade::get($category_id);
     }
-    
+
     /**
      * Method update
      *
@@ -59,11 +61,11 @@ class JobCompanyController extends Controller
      *
      * @return void
      */
-    public function update($category_id, Request $request)
+    public function update($category_id, UpdateJobCompanyRequest $request)
     {
         return JobCompanyFacade::update($category_id, $request->all());
     }
-    
+
     /**
      * Method delete
      *

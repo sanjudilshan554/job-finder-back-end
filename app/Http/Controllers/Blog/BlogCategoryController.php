@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Blog\BlogCategory\CreateBlogCategoryRequest;
+use App\Http\Requests\Blog\BlogCategory\UpdateBlogCategoryRequest;
 use domain\Facade\BlogCategoryFacade\BlogCategoryFacade;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,7 @@ class BlogCategoryController extends Controller
      *
      * @return void
      */
-    public function store(Request $request)
+    public function store(CreateBlogCategoryRequest $request)
     {
         return BlogCategoryFacade::store($request->all());
     }
@@ -60,7 +62,7 @@ class BlogCategoryController extends Controller
      *
      * @return void
      */
-    public function update($category_id, Request $request)
+    public function update($category_id, UpdateBlogCategoryRequest $request)
     {
         return BlogCategoryFacade::update($category_id, $request->all());
     }

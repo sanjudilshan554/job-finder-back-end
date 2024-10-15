@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Blog\BlogTag\CreateBlogTagRequest;
+use App\Http\Requests\Blog\BlogTag\UpdateBlogTagRequest;
 use domain\Facade\BlogTagFacade\BlogTagFacade;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,7 @@ class BlogTagController extends Controller
      *
      * @return void
      */
-    public function store(Request $request)
+    public function store(CreateBlogTagRequest $request)
     {
         return BlogTagFacade::store($request->all());
     }
@@ -50,7 +52,7 @@ class BlogTagController extends Controller
      *
      * @return void
      */
-    public function update($job_id, Request $request)
+    public function update($job_id, UpdateBlogTagRequest $request)
     {
         return BlogTagFacade::update($job_id, $request->all());
     }

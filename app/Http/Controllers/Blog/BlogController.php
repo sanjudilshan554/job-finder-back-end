@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\CreateBlogRequest;
+use App\Http\Requests\Blog\UpdateBlogRequest;
 use domain\Facade\BlogFacade\BlogFacade;
 use Illuminate\Http\Request;
 
@@ -51,7 +52,7 @@ class BlogController extends Controller
      *
      * @return void
      */
-    public function update($job_id, Request $request)
+    public function update($job_id, UpdateBlogRequest $request)
     {
         return BlogFacade::update($job_id, $request->all());
     }

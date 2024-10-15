@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->string('web_address')->nullable();
+            $table->text('web_address')->nullable();
             $table->string('email')->nullable();
             $table->string('location')->nullable();
             $table->string('address')->nullable();

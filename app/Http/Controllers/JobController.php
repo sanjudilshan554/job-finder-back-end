@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Job\CreateJobRequest;
+use App\Http\Requests\Job\UpdateJobRequest;
 use domain\Facade\JobFacade\JobFacade;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class JobController extends Controller
      *
      * @return void
      */
-    public function store(Request $request)
+    public function store(CreateJobRequest $request)
     {
         return JobFacade::store($request->all());
     }
@@ -49,7 +51,7 @@ class JobController extends Controller
      *
      * @return void
      */
-    public function update($job_id, Request $request)
+    public function update($job_id, UpdateJobRequest $request)
     {
         return JobFacade::update($job_id, $request->all());
     }
