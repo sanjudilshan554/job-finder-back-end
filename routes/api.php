@@ -55,6 +55,9 @@ Route::prefix('/blog')->group(function () {
     Route::get('/edit/{blog_id}', [AdminBlogController::class, 'edit']);
     Route::post('/update/{blog_id}', [AdminBlogController::class, 'update']);
     Route::delete('/delete/{blog_id}', [AdminBlogController::class, 'delete']);
+    Route::get('/deleted/all', [AdminBlogController::class, 'deletedAll']);
+    Route::get('/deleted/get/{job_id}', [AdminBlogController::class, 'deletedGet']);
+    Route::get('/recovery/{job_id}', [AdminBlogController::class, 'recovery']);
 
     Route::prefix('/category')->group(function () {
         Route::post('/store', [AdminBlogCategoryController::class, 'store']);

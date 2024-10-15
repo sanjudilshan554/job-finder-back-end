@@ -93,4 +93,6 @@ class JobController extends Controller
         return JobFacade::recovery($job_id);
     }
 
+    
+
 }

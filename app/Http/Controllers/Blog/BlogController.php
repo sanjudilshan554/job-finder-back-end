@@ -66,4 +66,31 @@ class BlogController extends Controller
     {
         return BlogFacade::delete($job_id);
     }
+
+    /**
+     * Method deletedAll
+     *
+     * @return void
+     */
+    public function deletedAll()
+    {
+        return BlogFacade::deletedAll();
+    }
+    
+    /**
+     * Method deletedGet
+     *
+     * @param $job_id
+     *
+     * @return void
+     */
+    public function deletedGet($job_id)
+    {
+        return BlogFacade::deletedGet($job_id);
+    }
+
+    public function recovery($job_id)
+    {
+        return BlogFacade::recovery($job_id);
+    }
 }

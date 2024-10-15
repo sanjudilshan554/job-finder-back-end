@@ -96,4 +96,45 @@ class BlogService
         $slug = strtolower($slug);  // make it lowercase
         return $slug;
     }
+
+    /**
+     * Method deletedAll
+     *
+     * @return void
+     */
+    public function deletedAll()
+    {
+        return $this->blog->onlyTrashed()->get();
+    }
+
+    /**
+     * Method deletedGet
+     *
+     * @param $blog_id
+     *
+     * @return void
+     */
+    public function deletedGet($blog_id)
+    {
+        return $this->blog->onlyTrashed()->find($blog_id);
+    }
+
+    /**
+     * Method deletedGet
+     *
+     * @param $blog_id 
+     *
+     * @return void
+     */
+    public function recovery($blog_id)
+    {
+        $blog = $this->blog->onlyTrashed()->find($blog_id);
+
+        if ($blog) {
+            $blog->restore();
+        }
+
+        return;
+
+    }
 }
