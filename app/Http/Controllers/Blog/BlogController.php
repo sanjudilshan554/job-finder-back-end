@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Blog\CreateBlogRequest;
 use domain\Facade\BlogFacade\BlogFacade;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class BlogController extends Controller
      *
      * @return void
      */
-    public function store(Request $request)
+    public function store(CreateBlogRequest $request)
     {
         return BlogFacade::store($request->all());
     }

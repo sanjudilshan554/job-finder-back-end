@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('posted_by_name')->nullable(); 
             $table->bigInteger('image_id')->nullable(); 
             $table->string('meta_tags')->nullable(); 
+            $table->integer('view_count')->default(0); 
             $table->softDeletes();
             $table->timestamps();
         });

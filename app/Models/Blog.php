@@ -23,5 +23,6 @@ class Blog extends Model
         'posted_by_name',
         'image_id',
         'meta_tags',
+        'view_count'
     ];
 }
