@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Job\CreateJobRequest;
 use App\Http\Requests\Job\UpdateJobRequest;
+use App\Http\Resources\Job\GetJobResource;
+use App\Models\Job;
 use domain\Facade\JobFacade\JobFacade;
 use Illuminate\Http\Request;
 
@@ -20,7 +22,7 @@ class JobController extends Controller
     {
         return JobFacade::store($request->all());
     }
-    
+
     /**
      * Method all
      *
@@ -28,9 +30,11 @@ class JobController extends Controller
      */
     public function all()
     {
-        return JobFacade::all();
+        $perPage = request()->input('per_page', 2); // Default items per page
+        return GetJobResource::collection(Job::paginate($perPage));
     }
-    
+
+
     /**
      * Method get
      *
@@ -42,7 +46,7 @@ class JobController extends Controller
     {
         return JobFacade::get($job_id);
     }
-    
+
     /**
      * Method update
      *
@@ -55,7 +59,7 @@ class JobController extends Controller
     {
         return JobFacade::update($job_id, $request->all());
     }
-    
+
     /**
      * Method delete
      *
@@ -67,7 +71,7 @@ class JobController extends Controller
     {
         return JobFacade::delete($job_id);
     }
-    
+
     /**
      * Method deletedAll
      *
@@ -77,7 +81,7 @@ class JobController extends Controller
     {
         return JobFacade::deletedAll();
     }
-    
+
     /**
      * Method deletedGet
      *
@@ -95,6 +99,6 @@ class JobController extends Controller
         return JobFacade::recovery($job_id);
     }
 
-    
+
 
 }
