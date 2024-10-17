@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Job\Company\CreateJobCompanyRequest;
 use App\Http\Requests\Job\Company\UpdateJobCompanyRequest;
+use App\Http\Resources\Job\GetJobCompanyResource;
+use App\Models\JobCompany;
 use domain\Facade\JobCompanyFacade\JobCompanyFacade;
 use Illuminate\Http\Request;
 
@@ -28,7 +30,8 @@ class JobCompanyController extends Controller
      */
     public function all()
     {
-        return JobCompanyFacade::all();
+        $perPage = request()->input('per_page', 2);
+        return GetJobCompanyResource::collection(JobCompany::paginate($perPage));
     }
 
     /**
