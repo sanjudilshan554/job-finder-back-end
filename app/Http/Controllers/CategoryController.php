@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Job\Category\CreateJobCategoryRequest;
 use App\Http\Requests\Job\Category\UpdateJobCategoryRequest;
+use App\Http\Resources\Job\GetJobCategoryResource;
+use App\Models\JobCategory;
 use domain\Facade\CategoryFacade\CategoryFacade;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
-{    
+{
     /**
      * Method store
      *
@@ -21,7 +23,7 @@ class CategoryController extends Controller
     {
         return CategoryFacade::store($request->all());
     }
-    
+
     /**
      * Method all
      *
@@ -29,7 +31,8 @@ class CategoryController extends Controller
      */
     public function all()
     {
-        return CategoryFacade::all();
+        $perPage = request()->input('perPage', 2);
+        return GetJobCategoryResource::collection(JobCategory::paginate($perPage));
     }
 
     /**
@@ -41,7 +44,7 @@ class CategoryController extends Controller
     {
         return CategoryFacade::allEnabled();
     }
-    
+
     /**
      * Method get
      *
@@ -53,7 +56,7 @@ class CategoryController extends Controller
     {
         return CategoryFacade::get($category_id);
     }
-    
+
     /**
      * Method update
      *
@@ -66,7 +69,7 @@ class CategoryController extends Controller
     {
         return CategoryFacade::update($category_id, $request->all());
     }
-    
+
     /**
      * Method delete
      *
