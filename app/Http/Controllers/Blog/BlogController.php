@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Blog;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\CreateBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
+use App\Http\Resources\Blog\GetBlogResource;
+use App\Http\Resources\Blog\GetDeletedBlogResource;
+use App\Models\Blog;
 use domain\Facade\BlogFacade\BlogFacade;
 use Illuminate\Http\Request;
 
@@ -29,7 +32,8 @@ class BlogController extends Controller
      */
     public function all()
     {
-        return BlogFacade::all();
+        $perPage = request()->input('per_page', 10);
+        return GetBlogResource::collection(Blog::paginate($perPage));
     }
     
     /**
@@ -76,7 +80,9 @@ class BlogController extends Controller
      */
     public function deletedAll()
     {
-        return BlogFacade::deletedAll();
+        $perPage = request()->input('per_page', 10);
+        $blog = Blog::onlyTrashed()->paginate($perPage);
+        return GetDeletedBlogResource::collection($blog);
     }
     
     /**

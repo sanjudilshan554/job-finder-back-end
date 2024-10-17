@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Blog;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\BlogCategory\CreateBlogCategoryRequest;
 use App\Http\Requests\Blog\BlogCategory\UpdateBlogCategoryRequest;
+use App\Http\Resources\Blog\GetBlogCategoryResource;
+use App\Models\BlogCategory;
 use domain\Facade\BlogCategoryFacade\BlogCategoryFacade;
 use Illuminate\Http\Request;
 
@@ -29,7 +31,8 @@ class BlogCategoryController extends Controller
      */
     public function all()
     {
-        return BlogCategoryFacade::all();
+        $perPage = request()->input('per_page', 10);
+        return GetBlogCategoryResource::collection(BlogCategory::paginate($perPage));
     }
 
     /**
