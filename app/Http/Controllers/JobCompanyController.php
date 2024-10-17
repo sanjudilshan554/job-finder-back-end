@@ -30,7 +30,7 @@ class JobCompanyController extends Controller
      */
     public function all()
     {
-        $perPage = request()->input('per_page', 2);
+        $perPage = request()->input('per_page', 10);
         return GetJobCompanyResource::collection(JobCompany::paginate($perPage));
     }
 

@@ -31,7 +31,7 @@ class CategoryController extends Controller
      */
     public function all()
     {
-        $perPage = request()->input('perPage', 2);
+        $perPage = request()->input('perPage', 10);
         return GetJobCategoryResource::collection(JobCategory::paginate($perPage));
     }
 

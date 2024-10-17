@@ -115,6 +115,7 @@ class JobService
      */
     public function deletedGet($job_id)
     {
+        // return $job_id;
         return $this->job->onlyTrashed()->find($job_id);
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Job\CreateJobRequest;
 use App\Http\Requests\Job\UpdateJobRequest;
+use App\Http\Resources\Job\GetDeletedJobResource;
 use App\Http\Resources\Job\GetJobResource;
 use App\Models\Job;
 use domain\Facade\JobFacade\JobFacade;
@@ -30,7 +31,7 @@ class JobController extends Controller
      */
     public function all()
     {
-        $perPage = request()->input('per_page', 2); // Default items per page
+        $perPage = request()->input('per_page', 10);
         return GetJobResource::collection(Job::paginate($perPage));
     }
 
@@ -79,7 +80,9 @@ class JobController extends Controller
      */
     public function deletedAll()
     {
-        return JobFacade::deletedAll();
+        $perPage = request()->input('per_page', 10);
+        $deletedJobs = Job::onlyTrashed()->paginate($perPage); 
+        return GetDeletedJobResource::collection($deletedJobs);
     }
 
     /**
