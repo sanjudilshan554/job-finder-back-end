@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Blog\BlogCategoryController as AdminBlogCategoryController;
@@ -78,5 +80,28 @@ Route::prefix('/blog')->group(function () {
         Route::get('/edit/{job_id}', [AdminBlogTagController::class, 'edit']);
         Route::post('/update/{job_id}', [AdminBlogTagController::class, 'update']);
         Route::delete('/delete/{job_id}', [AdminBlogTagController::class, 'delete']);
+    });
+});
+
+
+//User
+Route::prefix('user')->group(function () {
+    Route::get('/', [UserController::class, "index"]);
+    Route::get('/all', [UserController::class, "all"]);
+    Route::get('/all-users', [UserController::class, "allUsers"]);
+    Route::get('/all-admins', [UserController::class, "allAdmins"]);
+    Route::post('/store', [UserController::class, "store"]);
+    Route::get('get/{user_id}/', [UserController::class, "get"]);
+    Route::get('/{user_id}/load', [UserController::class, "loadUser"]);
+    Route::post('update/{user_id}/', [UserController::class, "update"]);
+    Route::delete('delete/{user_id}/', [UserController::class, "delete"]);
+    Route::get('/{user_id}/restore', [UserController::class, "restore"]);
+
+
+    Route::prefix('permission')->group(function () {
+        Route::get('/group/all', [PermissionController::class, "groups"]);
+        Route::get('/list/all', [PermissionController::class, "allList"]);
+        Route::get('/{user_id}/user/all', [PermissionController::class, "userPermissionsList"]);
+        Route::post('/{user_id}/update/user/permissions', [PermissionController::class, "updatePermissions"]);
     });
 });

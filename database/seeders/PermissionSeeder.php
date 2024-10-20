@@ -21,13 +21,16 @@ class PermissionSeeder extends Seeder
                 'name' => 'create_users',
             ],
             [
-                'name' => 'update_user',
+                'name' => 'update_users',
             ],
             [
                 'name' => 'delete_users',
             ],
             [
                 'name' => 'view_users',
+            ],
+            [
+                'name' => 'read_users',
             ],
             [
                 'name' => 'create_blog',
@@ -41,10 +44,13 @@ class PermissionSeeder extends Seeder
             [
                 'name' => 'view_blog',
             ],
+            [
+                'name' => 'read_blogs',
+            ],
         ];
 
         foreach($permissions as $permission){
-            $old_permission = $this->$permission->where('name', $permission['name'])->first();
+            $old_permission = $this->permission->where('name', $permission['name'])->first();
             if(!$old_permission){
                 $this->permission->create($permission);
             }
