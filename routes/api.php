@@ -1,7 +1,8 @@
 <?php
 
-
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\AuthController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Blog\BlogCategoryController as AdminBlogCategoryController;
 use App\Http\Controllers\Blog\BlogTagController as AdminBlogTagController;
 use App\Http\Controllers\CategoryController as AdminCategoryController;
@@ -9,23 +10,14 @@ use App\Http\Controllers\JobCompanyController as AdminJobCompanyController;
 use App\Http\Controllers\JobController as AdminJobController;
 use App\Http\Controllers\Blog\BlogController as AdminBlogController;
 
-use App\Http\Controllers\Uesr\LoginController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-
 Route::get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:sanctum');
+})->middleware('auth:sanctum'); 
 
-Route::middleware(['auth:api', 'role:admin'])->group(function () {
-    Route::get('/admin-dashboard', 'AdminController@dashboard');
-});
-
-Route::prefix('/user')->group(function () {
-    Route::post('/login', [AuthController::class, 'login']); 
-    Route::post('/register', [AuthController::class, 'register']); 
-});
-
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/user', [AuthController::class, 'getUser'])->middleware('auth:sanctum');
 
 // Jobs
 Route::prefix('/job')->group(function () {
