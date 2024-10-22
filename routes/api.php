@@ -101,7 +101,7 @@ Route::prefix('user')->group(function () {
     Route::prefix('permission')->group(function () {
         Route::get('/group/all', [PermissionController::class, "groups"]);
         Route::get('/list/all', [PermissionController::class, "allList"]);
-        Route::get('/{user_id}/user/all', [PermissionController::class, "userPermissionsList"]);
-        Route::post('/{user_id}/update/user/permissions', [PermissionController::class, "updatePermissions"]);
+        Route::get('/all/{user_id}/', [PermissionController::class, "userPermissionsList"]);
+        Route::post('update/user/permissions/{user_id}/', [PermissionController::class, "updatePermissions"]);
     });
 });
